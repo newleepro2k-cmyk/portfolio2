@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111014">
+  <title>이경민 | AI & Deep Learning Portfolio</title>
+  <meta name="description" content="AI 기반 예측 프로그램과 딥러닝 프로그래밍 교육을 소개하는 이경민의 포트폴리오">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111014;
+      --panel: #19171e;
+      --panel-2: #211e29;
+      --text: #f7f3fb;
+      --muted: #b8afc2;
+      --purple: #b89aff;
+      --purple-2: #8d6bd4;
+      --pink: #f1b8d6;
+      --line: rgba(222, 207, 255, .15);
+      --soft: #d9c9f7;
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Gowun Dodum", sans-serif; line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+    .layout { min-height: 100vh; }
+    .sidebar {
+      position: fixed; inset: 0 auto 0 0; width: 330px; padding: 42px 34px;
+      background: linear-gradient(155deg, #1c1922, #141218 72%);
+      border-right: 1px solid var(--line); display: flex; flex-direction: column;
+      overflow-y: auto; z-index: 5;
+    }
+    .brand { color: var(--purple); font: 1.05rem "Jua", sans-serif; letter-spacing: .04em; }
+    .side-name { margin: 48px 0 5px; font: 2.2rem "Jua", sans-serif; }
+    .side-role { color: var(--purple); font-size: .92rem; }
+    .side-copy { margin: 24px 0 30px; color: var(--muted); font-size: .94rem; }
+    .nav { display: grid; gap: 7px; margin-top: 8px; }
+    .nav a {
+      padding: 9px 13px; border-radius: 13px; color: var(--muted);
+      transition: .2s ease; font-size: .94rem;
+    }
+    .nav a:hover, .nav a:focus-visible { color: var(--text); background: rgba(184,154,255,.13); outline: none; }
+    .side-bottom { margin-top: auto; padding-top: 34px; color: #8f8798; font-size: .8rem; }
+    .side-bottom span { color: var(--pink); }
+    main { margin-left: 330px; height: 100vh; overflow-y: auto; scroll-behavior: smooth; }
+    .content { width: min(100%, 1060px); margin: 0 auto; padding: 0 58px 90px; }
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; padding: 70px 0 80px;
+    }
+    .profile-placeholder {
+      width: 168px; height: 168px; border-radius: 50%; background: #77727e;
+      border: 6px solid rgba(184,154,255,.22); box-shadow: 0 0 0 12px rgba(184,154,255,.06);
+      display: grid; place-items: center; color: #f4eff8; font-size: .86rem;
+      margin-bottom: 34px; overflow: hidden;
+    }
+    .eyebrow { color: var(--pink); letter-spacing: .16em; font-size: .78rem; text-transform: uppercase; }
+    h1 { margin: 12px 0 8px; font: clamp(2.5rem, 6vw, 4.5rem) "Jua", sans-serif; }
+    .hero-line { font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: var(--soft); margin: 0; }
+    .hero-note { max-width: 570px; color: var(--muted); margin: 22px auto 28px; }
+    .pill-row { display: flex; gap: 9px; flex-wrap: wrap; justify-content: center; }
+    .pill { border: 1px solid rgba(184,154,255,.35); color: #d9cafa; background: rgba(184,154,255,.09); padding: 6px 13px; border-radius: 999px; font-size: .82rem; }
+    .scroll-hint { margin-top: 52px; color: #82798c; font-size: .8rem; }
+    section { padding: 82px 0 20px; scroll-margin-top: 30px; }
+    .section-head { margin-bottom: 28px; }
+    .section-kicker { color: var(--pink); font-size: .78rem; letter-spacing: .15em; }
+    h2 { margin: 5px 0 0; font: clamp(1.8rem, 3vw, 2.5rem) "Jua", sans-serif; }
+    .intro-card, .project-card, .experience-card, .strength-card, .contact-card {
+      background: linear-gradient(145deg, rgba(39,34,48,.96), rgba(25,23,30,.96));
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 27px;
+    }
+    .intro-card p { color: #d5cedd; margin: 0 0 14px; }
+    .intro-card p:last-child { margin-bottom: 0; }
+    .coffee { color: var(--pink); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .strength-card { padding: 23px 20px; }
+    .emoji { font-size: 1.55rem; }
+    h3 { font: 1.15rem "Jua", sans-serif; margin: 10px 0 7px; }
+    .strength-card p, .project-card p, .experience-card p { color: var(--muted); margin: 0; font-size: .92rem; }
+    .timeline { display: grid; gap: 15px; }
+    .experience-card { display: grid; grid-template-columns: 125px 1fr; gap: 20px; }
+    .date { color: var(--purple); font: 1rem "Jua", sans-serif; padding-top: 3px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0 10px; }
+    .meta span { font-size: .78rem; padding: 3px 9px; border-radius: 99px; background: rgba(241,184,214,.1); color: #f0c9df; }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .project-image {
+      height: 170px; border-radius: 16px; background: #77727e; color: #f2edf5;
+      display: grid; place-items: center; margin-bottom: 18px; font-size: .88rem;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .project-year { color: var(--pink); font-size: .82rem; }
+    .project-card h3 { font-size: 1.25rem; margin: 4px 0 9px; }
+    .project-card .result { color: #ded1fa; margin-top: 12px; }
+    .style-card { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+    .swatches { display: flex; gap: 9px; }
+    .swatch { width: 35px; height: 35px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); }
+    .style-copy { color: var(--muted); flex: 1; min-width: 210px; }
+    .contact-card { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .email-link { color: var(--purple); font-size: 1.05rem; overflow-wrap: anywhere; }
+    .email-link:hover { color: var(--pink); }
+    footer { text-align: center; color: #82798c; font-size: .8rem; padding: 65px 0 10px; }
+    @media (max-width: 900px) {
+      .sidebar { width: 270px; padding: 32px 25px; }
+      main { margin-left: 270px; }
+      .content { padding: 0 34px 70px; }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .sidebar { position: relative; width: 100%; inset: auto; padding: 22px 22px 18px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .brand { display: inline-block; }
+      .side-name { margin: 15px 0 0; font-size: 1.7rem; }
+      .side-copy { margin: 8px 0 13px; }
+      .side-role { display: inline-block; margin-left: 8px; }
+      .nav { display: flex; overflow-x: auto; gap: 4px; padding-bottom: 3px; }
+      .nav a { white-space: nowrap; padding: 7px 10px; font-size: .83rem; }
+      .side-bottom { display: none; }
+      main { margin-left: 0; height: auto; overflow: visible; }
+      .content { padding: 0 21px 55px; }
+      .hero { min-height: 76vh; padding: 55px 0 45px; }
+      .profile-placeholder { width: 140px; height: 140px; }
+      section { padding-top: 62px; }
+      .experience-card { grid-template-columns: 1fr; gap: 3px; }
+      .projects { grid-template-columns: 1fr; }
+      .contact-card { align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html, main { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">KMIN · PORTFOLIO</div>
+      <div>
+        <div class="side-name">이경민</div>
+        <div class="side-role">AI · Deep Learning</div>
+      </div>
+      <p class="side-copy">AI 기반 예측 프로그램을 만들고 있어요.<br>기술과 사람을 연결하는 개발을 지향합니다.</p>
+      <nav class="nav" aria-label="페이지 메뉴">
+        <a href="#about">소개</a>
+        <a href="#strengths">강점</a>
+        <a href="#experience">경험</a>
+        <a href="#projects">대표 작품</a>
+        <a href="#style">작업 스타일</a>
+        <a href="#contact">연락하기</a>
+      </nav>
+      <div class="side-bottom">한 잔의 여유와 함께, <span>꾸준히 만드는 사람</span></div>
+    </aside>
+
+    <main>
+      <div class="content">
+        <header class="hero" id="top">
+          <div class="profile-placeholder" role="img" aria-label="프로필 사진 자리">프로필 사진</div>
+          <div class="eyebrow">AI PROGRAMMING · PORTFOLIO</div>
+          <h1>안녕하세요, 이경민입니다.</h1>
+          <p class="hero-line">AI 기반 예측 프로그램을 만들고 있어요.</p>
+          <p class="hero-note">현장의 문제를 이해하고, 인공지능과 프로그래밍으로 해결 방법을 만들어 갑니다.</p>
+          <div class="pill-row">
+            <span class="pill">AI 기반 프로그래밍 교육</span>
+            <span class="pill">딥러닝 프로그래밍</span>
+            <span class="pill">예측 프로그램 개발</span>
+          </div>
+          <div class="scroll-hint">아래로 스크롤해 더 알아보기 ↓</div>
+        </header>
+
+        <section id="about">
+          <div class="section-head"><div class="section-kicker">01 · ABOUT</div><h2>저를 소개합니다</h2></div>
+          <div class="intro-card">
+            <p>바쁜 일상 속에서도 <span class="coffee">커피 한 잔의 여유</span>를 좋아하는 직장인 개발자입니다.</p>
+            <p>치과 파노라마 사진 촬영 프로그램, 얼굴 영상 인식, 3D 카메라를 이용한 노면 표지 및 장애물 인식 프로그램 등을 만들었습니다.</p>
+            <p>지금은 AI 개발 동향을 요약·정리해 매일 간단하게 보고받을 수 있는 방법에도 관심을 두고 있습니다.</p>
+          </div>
+        </section>
+
+        <section id="strengths">
+          <div class="section-head"><div class="section-kicker">02 · STRENGTHS</div><h2>강점과 역량</h2></div>
+          <div class="grid-3">
+            <article class="strength-card"><div class="emoji">📝</div><h3>개인 프로젝트</h3><p>연구 보고서 작성 및 개인 개발 프로젝트를 진행할 수 있습니다.</p></article>
+            <article class="strength-card"><div class="emoji">🧩</div><h3>팀 프로젝트</h3><p>프로젝트 매니저(PM)로서 팀의 역할과 진행을 조율합니다.</p></article>
+            <article class="strength-card"><div class="emoji">☀️</div><h3>분위기 메이커</h3><p>매끄러운 개발 진행을 돕고, 함께 일하기 좋은 분위기를 만듭니다.</p></article>
+          </div>
+        </section>
+
+        <section id="experience">
+          <div class="section-head"><div class="section-kicker">03 · EXPERIENCE</div><h2>경험과 활동</h2></div>
+          <div class="timeline">
+            <article class="experience-card">
+              <div class="date">2019. 11</div>
+              <div><h3>CNN 기반 고장 예측</h3><div class="meta"><span>역할 · 발표</span><span>우수 논문상</span></div><p>자료 조사 및 프로그램 개발을 진행하고 발표했습니다. 그 결과 우수 논문상을 수여받았습니다.</p></div>
+            </article>
+            <article class="experience-card">
+              <div class="date">2020. 03</div>
+              <div><h3>CPS 기반 군집 회피 예측</h3><div class="meta"><span>역할 · PM 매니저</span><span>ETRI 개발 과제</span></div><p>시스템 테스트를 담당했습니다.</p></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="projects">
+          <div class="section-head"><div class="section-kicker">04 · SELECTED WORK</div><h2>대표 작품</h2></div>
+          <div class="projects">
+            <article class="project-card">
+              <div class="project-image" role="img" aria-label="치과 파노라마 영상 작품 이미지 자리">작품 이미지 자리</div>
+              <div class="project-year">1998</div>
+              <h3>치과 파노라마 영상</h3>
+              <p>병원 의뢰용으로 제작한 프로그램입니다.</p>
+              <p class="result">병원에서 실제 사용</p>
+            </article>
+            <article class="project-card">
+              <div class="project-image" role="img" aria-label="설비 고장예측 모니터링 프로그램 이미지 자리">작품 이미지 자리</div>
+              <div class="project-year">2020</div>
+              <h3>설비 고장예측 모니터링 프로그램</h3>
+              <p>개발 이전 단계의 프로젝트로 소개합니다.</p>
+              <p class="result">생산 설비에 사용</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="style">
+          <div class="section-head"><div class="section-kicker">05 · WORK STYLE</div><h2>작업 스타일</h2></div>
+          <div class="intro-card style-card">
+            <div class="swatches" aria-label="컬러 팔레트">
+              <span class="swatch" style="background:#111014"></span>
+              <span class="swatch" style="background:#b89aff"></span>
+              <span class="swatch" style="background:#f1b8d6"></span>
+              <span class="swatch" style="background:#d9c9f7"></span>
+              <span class="swatch" style="background:#77727e"></span>
+            </div>
+            <div class="style-copy">따뜻한 파스텔톤의 감성과 전문적인 완성도를 함께 추구합니다. 편안하고 발랄한 분위기 속에서도 문제 해결과 프로젝트 진행의 핵심을 놓치지 않습니다.</div>
+          </div>
+        </section>
+
+        <section id="contact">
+          <div class="section-head"><div class="section-kicker">06 · CONTACT</div><h2>함께 만들어 볼까요?</h2></div>
+          <div class="contact-card">
+            <div><h3>협업과 프로젝트 문의</h3><p style="color:var(--muted);margin:0">AI 기반 프로그래밍 교육 및 딥러닝 프로그래밍 관련 연락을 기다립니다.</p></div>
+            <a class="email-link" href="mailto:newleepro2k@gmail.com">newleepro2k@gmail.com ↗</a>
+          </div>
+        </section>
+        <footer>© 이경민 · AI & Deep Learning Portfolio</footer>
+      </div>
+    </main>
+  </div>
+  <script>
+    // 모바일과 데스크톱 모두 메뉴 링크가 해당 섹션으로 자연스럽게 이동합니다.
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', event => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', link.getAttribute('href'));
+      });
+    });
+  </script>
+</body>
+</html>
