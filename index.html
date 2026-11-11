@@ -1,265 +1,275 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111014">
-  <title>이경민 | AI & Deep Learning Portfolio</title>
-  <meta name="description" content="AI 기반 예측 프로그램과 딥러닝 프로그래밍 교육을 소개하는 이경민의 포트폴리오">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #111014;
-      --panel: #19171e;
-      --panel-2: #211e29;
-      --text: #f7f3fb;
-      --muted: #b8afc2;
-      --purple: #b89aff;
-      --purple-2: #8d6bd4;
-      --pink: #f1b8d6;
-      --line: rgba(222, 207, 255, .15);
-      --soft: #d9c9f7;
-      --radius: 24px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font-family: "Gowun Dodum", sans-serif; line-height: 1.75;
-    }
-    a { color: inherit; text-decoration: none; }
-    .layout { min-height: 100vh; }
-    .sidebar {
-      position: fixed; inset: 0 auto 0 0; width: 330px; padding: 42px 34px;
-      background: linear-gradient(155deg, #1c1922, #141218 72%);
-      border-right: 1px solid var(--line); display: flex; flex-direction: column;
-      overflow-y: auto; z-index: 5;
-    }
-    .brand { color: var(--purple); font: 1.05rem "Jua", sans-serif; letter-spacing: .04em; }
-    .side-name { margin: 48px 0 5px; font: 2.2rem "Jua", sans-serif; }
-    .side-role { color: var(--purple); font-size: .92rem; }
-    .side-copy { margin: 24px 0 30px; color: var(--muted); font-size: .94rem; }
-    .nav { display: grid; gap: 7px; margin-top: 8px; }
-    .nav a {
-      padding: 9px 13px; border-radius: 13px; color: var(--muted);
-      transition: .2s ease; font-size: .94rem;
-    }
-    .nav a:hover, .nav a:focus-visible { color: var(--text); background: rgba(184,154,255,.13); outline: none; }
-    .side-bottom { margin-top: auto; padding-top: 34px; color: #8f8798; font-size: .8rem; }
-    .side-bottom span { color: var(--pink); }
-    main { margin-left: 330px; height: 100vh; overflow-y: auto; scroll-behavior: smooth; }
-    .content { width: min(100%, 1060px); margin: 0 auto; padding: 0 58px 90px; }
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
-      justify-content: center; text-align: center; padding: 70px 0 80px;
-    }
-    .profile-placeholder {
-      width: 168px; height: 168px; border-radius: 50%; background: #77727e;
-      border: 6px solid rgba(184,154,255,.22); box-shadow: 0 0 0 12px rgba(184,154,255,.06);
-      display: grid; place-items: center; color: #f4eff8; font-size: .86rem;
-      margin-bottom: 34px; overflow: hidden;
-    }
-    .eyebrow { color: var(--pink); letter-spacing: .16em; font-size: .78rem; text-transform: uppercase; }
-    h1 { margin: 12px 0 8px; font: clamp(2.5rem, 6vw, 4.5rem) "Jua", sans-serif; }
-    .hero-line { font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: var(--soft); margin: 0; }
-    .hero-note { max-width: 570px; color: var(--muted); margin: 22px auto 28px; }
-    .pill-row { display: flex; gap: 9px; flex-wrap: wrap; justify-content: center; }
-    .pill { border: 1px solid rgba(184,154,255,.35); color: #d9cafa; background: rgba(184,154,255,.09); padding: 6px 13px; border-radius: 999px; font-size: .82rem; }
-    .scroll-hint { margin-top: 52px; color: #82798c; font-size: .8rem; }
-    section { padding: 82px 0 20px; scroll-margin-top: 30px; }
-    .section-head { margin-bottom: 28px; }
-    .section-kicker { color: var(--pink); font-size: .78rem; letter-spacing: .15em; }
-    h2 { margin: 5px 0 0; font: clamp(1.8rem, 3vw, 2.5rem) "Jua", sans-serif; }
-    .intro-card, .project-card, .experience-card, .strength-card, .contact-card {
-      background: linear-gradient(145deg, rgba(39,34,48,.96), rgba(25,23,30,.96));
-      border: 1px solid var(--line); border-radius: var(--radius); padding: 27px;
-    }
-    .intro-card p { color: #d5cedd; margin: 0 0 14px; }
-    .intro-card p:last-child { margin-bottom: 0; }
-    .coffee { color: var(--pink); }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-    .strength-card { padding: 23px 20px; }
-    .emoji { font-size: 1.55rem; }
-    h3 { font: 1.15rem "Jua", sans-serif; margin: 10px 0 7px; }
-    .strength-card p, .project-card p, .experience-card p { color: var(--muted); margin: 0; font-size: .92rem; }
-    .timeline { display: grid; gap: 15px; }
-    .experience-card { display: grid; grid-template-columns: 125px 1fr; gap: 20px; }
-    .date { color: var(--purple); font: 1rem "Jua", sans-serif; padding-top: 3px; }
-    .meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0 10px; }
-    .meta span { font-size: .78rem; padding: 3px 9px; border-radius: 99px; background: rgba(241,184,214,.1); color: #f0c9df; }
-    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .project-image {
-      height: 170px; border-radius: 16px; background: #77727e; color: #f2edf5;
-      display: grid; place-items: center; margin-bottom: 18px; font-size: .88rem;
-      border: 1px solid rgba(255,255,255,.12);
-    }
-    .project-year { color: var(--pink); font-size: .82rem; }
-    .project-card h3 { font-size: 1.25rem; margin: 4px 0 9px; }
-    .project-card .result { color: #ded1fa; margin-top: 12px; }
-    .style-card { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-    .swatches { display: flex; gap: 9px; }
-    .swatch { width: 35px; height: 35px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); }
-    .style-copy { color: var(--muted); flex: 1; min-width: 210px; }
-    .contact-card { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    .email-link { color: var(--purple); font-size: 1.05rem; overflow-wrap: anywhere; }
-    .email-link:hover { color: var(--pink); }
-    footer { text-align: center; color: #82798c; font-size: .8rem; padding: 65px 0 10px; }
-    @media (max-width: 900px) {
-      .sidebar { width: 270px; padding: 32px 25px; }
-      main { margin-left: 270px; }
-      .content { padding: 0 34px 70px; }
-      .grid-3 { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 680px) {
-      .sidebar { position: relative; width: 100%; inset: auto; padding: 22px 22px 18px; border-right: 0; border-bottom: 1px solid var(--line); }
-      .brand { display: inline-block; }
-      .side-name { margin: 15px 0 0; font-size: 1.7rem; }
-      .side-copy { margin: 8px 0 13px; }
-      .side-role { display: inline-block; margin-left: 8px; }
-      .nav { display: flex; overflow-x: auto; gap: 4px; padding-bottom: 3px; }
-      .nav a { white-space: nowrap; padding: 7px 10px; font-size: .83rem; }
-      .side-bottom { display: none; }
-      main { margin-left: 0; height: auto; overflow: visible; }
-      .content { padding: 0 21px 55px; }
-      .hero { min-height: 76vh; padding: 55px 0 45px; }
-      .profile-placeholder { width: 140px; height: 140px; }
-      section { padding-top: 62px; }
-      .experience-card { grid-template-columns: 1fr; gap: 3px; }
-      .projects { grid-template-columns: 1fr; }
-      .contact-card { align-items: flex-start; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html, main { scroll-behavior: auto; }
-      * { transition: none !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#eaf7ff">
+<meta name="description" content="이경민의 AI 기반 예측 프로그램 및 딥러닝 프로그래밍 포트폴리오">
+<title>이경민 | AI & Deep Learning Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#eaf7ff;--sky2:#d9efff;--blue:#153f78;--blue2:#2864a5;
+  --ink:#24415f;--muted:#637b94;--yellow:#ffd95b;--white:#fff;
+  --line:#b9d8ef;--card:rgba(255,255,255,.83);--shadow:0 16px 42px rgba(40,91,137,.11);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--sky);color:var(--ink);font-family:"Gowun Dodum",sans-serif;line-height:1.8}
+a{color:inherit;text-decoration:none}
+button,a{-webkit-tap-highlight-color:transparent}
+.site{overflow:hidden}
+.wrap{width:min(100% - 42px,790px);margin-inline:auto}
+.hero{
+  min-height:100svh;display:grid;place-items:center;text-align:center;padding:75px 20px 90px;
+  background:linear-gradient(125deg,#dff4ff,#c5e7ff,#e7eaff,#d7f3f0,#e9f5ff);
+  background-size:350% 350%;animation:skyShift 18s ease-in-out infinite;position:relative;isolation:isolate;
+}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;z-index:-1;filter:blur(1px);opacity:.55}
+.hero:before{width:260px;height:260px;background:#fff5c7;top:8%;left:-100px}
+.hero:after{width:340px;height:340px;background:#c9e8ff;right:-140px;bottom:2%}
+@keyframes skyShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-inner{width:min(100%,650px)}
+.profile{
+  width:158px;height:158px;border-radius:50%;margin:0 auto 27px;background:#aaaeb4;
+  border:7px solid rgba(255,255,255,.9);box-shadow:0 10px 30px rgba(35,78,118,.15);
+  display:grid;place-items:center;color:#fff;font-size:.9rem;letter-spacing:.04em;
+}
+.profile{overflow:hidden}
+.profile img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%}
+
+.hello{font:1.05rem "Jua",sans-serif;color:var(--blue2);letter-spacing:.08em}
+h1{font:clamp(2.7rem,8vw,4.6rem) "Gaegu",cursive;font-weight:700;line-height:1.08;color:var(--blue);margin:10px 0}
+.hero-line{font:clamp(1.1rem,3vw,1.45rem) "Jua",sans-serif;color:#285c91;margin:16px 0}
+.hero-desc{max-width:540px;margin:0 auto;color:#54718c}
+.tags{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:25px}
+.tag{background:rgba(255,255,255,.7);border:1px solid rgba(40,100,165,.15);padding:6px 14px;border-radius:999px;color:var(--blue2);font-size:.84rem}
+.down{margin-top:52px;color:#64819b;font-size:.83rem;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(7px)}}
+nav{position:sticky;top:0;z-index:20;background:rgba(234,247,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(93,146,190,.16)}
+.nav-inner{width:min(100% - 30px,790px);margin:auto;display:flex;justify-content:center;gap:6px;overflow-x:auto;padding:10px 0}
+nav a{white-space:nowrap;padding:7px 12px;border-radius:30px;color:#52718e;font-size:.88rem;transition:.2s}
+nav a:hover,nav a:focus-visible{background:#fff1b8;color:var(--blue);outline:none}
+main{padding-bottom:70px}
+section{padding:92px 0 10px;scroll-margin-top:65px}
+.section-head{text-align:center;margin-bottom:32px}
+.kicker{font:1rem "Jua",sans-serif;letter-spacing:.14em;color:#6c9bc2}
+h2{font:700 clamp(2rem,5vw,3rem) "Gaegu",cursive;color:var(--blue);margin:5px 0 0;line-height:1.2}
+.underline{height:6px;width:58px;border-radius:9px;background:var(--yellow);margin:13px auto 0}
+.panel{background:var(--card);border:1px solid rgba(115,166,205,.2);border-radius:25px;padding:30px;box-shadow:var(--shadow)}
+.about p{margin:0 0 14px;color:#4d6983}
+.about p:last-child{margin:0}
+.highlight{color:#235d9b;font-weight:bold}
+.coffee{color:#c18a00;font-weight:bold}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;perspective:900px}
+.strength-card{
+  min-height:215px;background:var(--card);border:1px solid rgba(115,166,205,.22);border-radius:23px;
+  padding:24px 19px;box-shadow:var(--shadow);transform-style:preserve-3d;
+  transition:transform .18s ease,box-shadow .2s ease,border-color .2s ease;will-change:transform;
+}
+.strength-card:hover{box-shadow:0 22px 44px rgba(40,91,137,.18);border-color:#9bc8eb}
+.iconbox{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;background:#fff2bd;color:#244f7e;font-size:1.65rem}
+h3{font:1.3rem "Jua",sans-serif;color:var(--blue);margin:14px 0 8px}
+.strength-card p,.experience p,.project p{margin:0;color:var(--muted);font-size:.94rem}
+.timeline{position:relative;padding:10px 0 10px 34px}
+.timeline:before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:3px;background:#c8e1f3;border-radius:5px}
+.timeline-progress{position:absolute;left:9px;top:12px;width:3px;height:0;background:linear-gradient(#f4c83e,#6da8d6);border-radius:5px;z-index:1;transition:height .12s linear}
+.experience{position:relative;margin:0 0 22px;padding:22px 24px;background:var(--card);border:1px solid rgba(115,166,205,.22);border-radius:22px;box-shadow:var(--shadow);opacity:0;transform:translateY(35px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.experience:last-child{margin-bottom:0}
+.experience.visible{opacity:1;transform:translateY(0)}
+.dot{position:absolute;left:-34px;top:29px;width:17px;height:17px;border-radius:50%;background:var(--yellow);border:4px solid #8dbbe0;z-index:2;box-shadow:0 0 0 5px var(--sky)}
+.date{font:1rem "Jua",sans-serif;color:#3975a9}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0 12px}
+.meta span{font-size:.79rem;color:#416d94;background:#e7f3fc;border-radius:99px;padding:3px 10px}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.project{background:var(--card);border:1px solid rgba(115,166,205,.22);border-radius:23px;padding:19px;box-shadow:var(--shadow)}
+.project-image{height:165px;background:#aeb3ba;border-radius:16px;display:grid;place-items:center;color:#fff;font-size:.9rem;margin-bottom:17px}
+.year{font:1rem "Jua",sans-serif;color:#b18a00}
+.project h3{margin:4px 0 8px}
+.result{margin-top:12px!important;color:#315f8b!important;font-weight:bold}
+.style-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.swatches{display:flex;gap:9px}
+.swatch{width:35px;height:35px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 7px #aac6db}
+.style-copy{flex:1;min-width:210px;color:var(--muted)}
+.contact{text-align:center}
+.contact .email{display:inline-block;margin-top:13px;padding:11px 21px;border-radius:999px;background:var(--blue);color:#fff;transition:.2s}
+.contact .email:hover{background:#2b6eaa;transform:translateY(-2px)}
+footer{text-align:center;color:#7892a8;font-size:.82rem;padding:60px 0 0}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:700px){
+ .wrap{width:min(100% - 34px,560px)}
+ .hero{min-height:88svh;padding:65px 18px}
+ .profile{width:140px;height:140px}
+ .nav-inner{justify-content:flex-start}
+ section{padding-top:70px}
+ .cards{grid-template-columns:1fr;gap:12px}
+ .strength-card{min-height:0;display:grid;grid-template-columns:56px 1fr;column-gap:14px;align-items:center;padding:19px}
+ .strength-card .iconbox{grid-row:span 2}
+ .strength-card h3{margin:0 0 3px}
+ .strength-card p{grid-column:2}
+ .projects{grid-template-columns:1fr}
+ .panel{padding:23px}
+ .experience{padding:19px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+ .reveal,.experience{opacity:1;transform:none}
+}
+</style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="brand">KMIN · PORTFOLIO</div>
-      <div>
-        <div class="side-name">이경민</div>
-        <div class="side-role">AI · Deep Learning</div>
-      </div>
-      <p class="side-copy">AI 기반 예측 프로그램을 만들고 있어요.<br>기술과 사람을 연결하는 개발을 지향합니다.</p>
-      <nav class="nav" aria-label="페이지 메뉴">
-        <a href="#about">소개</a>
-        <a href="#strengths">강점</a>
-        <a href="#experience">경험</a>
-        <a href="#projects">대표 작품</a>
-        <a href="#style">작업 스타일</a>
-        <a href="#contact">연락하기</a>
-      </nav>
-      <div class="side-bottom">한 잔의 여유와 함께, <span>꾸준히 만드는 사람</span></div>
-    </aside>
-
-    <main>
-      <div class="content">
-        <header class="hero" id="top">
-          <div class="profile-placeholder" role="img" aria-label="프로필 사진 자리">프로필 사진</div>
-          <div class="eyebrow">AI PROGRAMMING · PORTFOLIO</div>
-          <h1>안녕하세요, 이경민입니다.</h1>
-          <p class="hero-line">AI 기반 예측 프로그램을 만들고 있어요.</p>
-          <p class="hero-note">현장의 문제를 이해하고, 인공지능과 프로그래밍으로 해결 방법을 만들어 갑니다.</p>
-          <div class="pill-row">
-            <span class="pill">AI 기반 프로그래밍 교육</span>
-            <span class="pill">딥러닝 프로그래밍</span>
-            <span class="pill">예측 프로그램 개발</span>
-          </div>
-          <div class="scroll-hint">아래로 스크롤해 더 알아보기 ↓</div>
-        </header>
-
-        <section id="about">
-          <div class="section-head"><div class="section-kicker">01 · ABOUT</div><h2>저를 소개합니다</h2></div>
-          <div class="intro-card">
-            <p>바쁜 일상 속에서도 <span class="coffee">커피 한 잔의 여유</span>를 좋아하는 직장인 개발자입니다.</p>
-            <p>치과 파노라마 사진 촬영 프로그램, 얼굴 영상 인식, 3D 카메라를 이용한 노면 표지 및 장애물 인식 프로그램 등을 만들었습니다.</p>
-            <p>지금은 AI 개발 동향을 요약·정리해 매일 간단하게 보고받을 수 있는 방법에도 관심을 두고 있습니다.</p>
-          </div>
-        </section>
-
-        <section id="strengths">
-          <div class="section-head"><div class="section-kicker">02 · STRENGTHS</div><h2>강점과 역량</h2></div>
-          <div class="grid-3">
-            <article class="strength-card"><div class="emoji">📝</div><h3>개인 프로젝트</h3><p>연구 보고서 작성 및 개인 개발 프로젝트를 진행할 수 있습니다.</p></article>
-            <article class="strength-card"><div class="emoji">🧩</div><h3>팀 프로젝트</h3><p>프로젝트 매니저(PM)로서 팀의 역할과 진행을 조율합니다.</p></article>
-            <article class="strength-card"><div class="emoji">☀️</div><h3>분위기 메이커</h3><p>매끄러운 개발 진행을 돕고, 함께 일하기 좋은 분위기를 만듭니다.</p></article>
-          </div>
-        </section>
-
-        <section id="experience">
-          <div class="section-head"><div class="section-kicker">03 · EXPERIENCE</div><h2>경험과 활동</h2></div>
-          <div class="timeline">
-            <article class="experience-card">
-              <div class="date">2019. 11</div>
-              <div><h3>CNN 기반 고장 예측</h3><div class="meta"><span>역할 · 발표</span><span>우수 논문상</span></div><p>자료 조사 및 프로그램 개발을 진행하고 발표했습니다. 그 결과 우수 논문상을 수여받았습니다.</p></div>
-            </article>
-            <article class="experience-card">
-              <div class="date">2020. 03</div>
-              <div><h3>CPS 기반 군집 회피 예측</h3><div class="meta"><span>역할 · PM 매니저</span><span>ETRI 개발 과제</span></div><p>시스템 테스트를 담당했습니다.</p></div>
-            </article>
-          </div>
-        </section>
-
-        <section id="projects">
-          <div class="section-head"><div class="section-kicker">04 · SELECTED WORK</div><h2>대표 작품</h2></div>
-          <div class="projects">
-            <article class="project-card">
-              <div class="project-image" role="img" aria-label="치과 파노라마 영상 작품 이미지 자리">작품 이미지 자리</div>
-              <div class="project-year">1998</div>
-              <h3>치과 파노라마 영상</h3>
-              <p>병원 의뢰용으로 제작한 프로그램입니다.</p>
-              <p class="result">병원에서 실제 사용</p>
-            </article>
-            <article class="project-card">
-              <div class="project-image" role="img" aria-label="설비 고장예측 모니터링 프로그램 이미지 자리">작품 이미지 자리</div>
-              <div class="project-year">2020</div>
-              <h3>설비 고장예측 모니터링 프로그램</h3>
-              <p>개발 이전 단계의 프로젝트로 소개합니다.</p>
-              <p class="result">생산 설비에 사용</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="style">
-          <div class="section-head"><div class="section-kicker">05 · WORK STYLE</div><h2>작업 스타일</h2></div>
-          <div class="intro-card style-card">
-            <div class="swatches" aria-label="컬러 팔레트">
-              <span class="swatch" style="background:#111014"></span>
-              <span class="swatch" style="background:#b89aff"></span>
-              <span class="swatch" style="background:#f1b8d6"></span>
-              <span class="swatch" style="background:#d9c9f7"></span>
-              <span class="swatch" style="background:#77727e"></span>
-            </div>
-            <div class="style-copy">따뜻한 파스텔톤의 감성과 전문적인 완성도를 함께 추구합니다. 편안하고 발랄한 분위기 속에서도 문제 해결과 프로젝트 진행의 핵심을 놓치지 않습니다.</div>
-          </div>
-        </section>
-
-        <section id="contact">
-          <div class="section-head"><div class="section-kicker">06 · CONTACT</div><h2>함께 만들어 볼까요?</h2></div>
-          <div class="contact-card">
-            <div><h3>협업과 프로젝트 문의</h3><p style="color:var(--muted);margin:0">AI 기반 프로그래밍 교육 및 딥러닝 프로그래밍 관련 연락을 기다립니다.</p></div>
-            <a class="email-link" href="mailto:newleepro2k@gmail.com">newleepro2k@gmail.com ↗</a>
-          </div>
-        </section>
-        <footer>© 이경민 · AI & Deep Learning Portfolio</footer>
-      </div>
-    </main>
+<div class="site">
+<header class="hero" id="home">
+  <div class="hero-inner">
+    <div class="profile">
+      <img src="./profile.jpg" alt="이경민 프로필 사진"
+           onerror="this.style.display='none'; this.parentElement.textContent='profile.jpg 사진을 같은 폴더에 넣어주세요';">
+    </div>
+    <div class="hello">반가워요! 저는</div>
+    <h1>이경민입니다 ☁️</h1>
+    <p class="hero-line">AI 기반 예측 프로그램을 만들고 있어.</p>
+    <p class="hero-desc">AI 기반 프로그래밍 교육과 딥러닝 프로그래밍을 통해 현장의 문제를 이해하고, 더 나은 해결 방법을 함께 만들어 갑니다.</p>
+    <div class="tags">
+      <span class="tag">AI 프로그래밍 교육</span><span class="tag">딥러닝 프로그래밍</span><span class="tag">예측 프로그램</span>
+    </div>
+    <div class="down">천천히 둘러보세요 ↓</div>
   </div>
-  <script>
-    // 모바일과 데스크톱 모두 메뉴 링크가 해당 섹션으로 자연스럽게 이동합니다.
-    document.querySelectorAll('.nav a').forEach(link => {
-      link.addEventListener('click', event => {
-        const target = document.querySelector(link.getAttribute('href'));
-        if (!target) return;
-        event.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        history.replaceState(null, '', link.getAttribute('href'));
+</header>
+<nav aria-label="페이지 메뉴"><div class="nav-inner">
+  <a href="#about">소개</a><a href="#strengths">강점</a><a href="#experience">경험</a><a href="#projects">대표 작품</a><a href="#style">작업 스타일</a><a href="#contact">연락처</a>
+</div></nav>
+<main>
+<div class="wrap">
+<section id="about" class="reveal">
+  <div class="section-head"><div class="kicker">ABOUT ME</div><h2>저를 소개합니다</h2><div class="underline"></div></div>
+  <div class="panel about">
+    <p>저는 <span class="highlight">라떼~ 직장인</span>입니다. 바쁜 일상 속에서도 <span class="coffee">커피 한 잔의 여유</span>를 좋아합니다.</p>
+    <p>치과 파노라마 사진 촬영 프로그램, 얼굴 영상 인식, 3D 카메라를 이용한 노면 표지 및 장애물 인식 프로그램 등을 만들었습니다.</p>
+    <p>지금은 AI 개발이 진행되는 상황을 요약·정리해서 매일 간단하게 보고받고 싶은 생각도 가지고 있습니다.</p>
+  </div>
+</section>
+<section id="strengths" class="reveal">
+  <div class="section-head"><div class="kicker">MY STRENGTHS</div><h2>강점과 역량</h2><div class="underline"></div></div>
+  <div class="cards">
+    <article class="strength-card tilt"><div class="iconbox" aria-hidden="true">📚</div><h3>개인 프로젝트</h3><p>연구 보고서 및 개인 개발 프로젝트 진행 가능</p></article>
+    <article class="strength-card tilt"><div class="iconbox" aria-hidden="true">🧭</div><h3>팀 프로젝트</h3><p>프로젝트 매니저(PM)로서 역할 수행</p></article>
+    <article class="strength-card tilt"><div class="iconbox" aria-hidden="true">🌟</div><h3>분위기 메이커</h3><p>프로젝트 매니저로서 매끄러운 개발 진행</p></article>
+  </div>
+</section>
+<section id="experience" class="reveal">
+  <div class="section-head"><div class="kicker">EXPERIENCE</div><h2>경험과 활동</h2><div class="underline"></div></div>
+  <div class="timeline" id="timeline">
+    <div class="timeline-progress" id="timelineProgress"></div>
+    <article class="experience">
+      <span class="dot"></span><div class="date">2019. 11</div><h3>CNN 기반 고장 예측</h3>
+      <div class="meta"><span>역할 · 발표</span><span>결과 · 우수 논문상 수여</span></div>
+      <p>자료 조사 및 프로그램 개발을 진행하고 발표했습니다.</p>
+    </article>
+    <article class="experience">
+      <span class="dot"></span><div class="date">2020. 03</div><h3>CPS 기반 군집 회피 예측</h3>
+      <div class="meta"><span>역할 · PM 매니저</span><span>활동 · ETRI 개발 과제</span></div>
+      <p>시스템 테스트를 담당했습니다.</p>
+    </article>
+  </div>
+</section>
+<section id="projects" class="reveal">
+  <div class="section-head"><div class="kicker">SELECTED WORK</div><h2>대표 작품</h2><div class="underline"></div></div>
+  <div class="projects">
+    <article class="project">
+      <div class="project-image" role="img" aria-label="치과 파노라마 영상 이미지 자리">작품 이미지 자리</div>
+      <div class="year">1998</div><h3>치과 파노라마 영상</h3>
+      <p>병원 의뢰용</p><p class="result">병원에서 실제 사용</p>
+    </article>
+    <article class="project">
+      <div class="project-image" role="img" aria-label="설비 고장예측 모니터링 프로그램 이미지 자리">작품 이미지 자리</div>
+      <div class="year">2020</div><h3>설비 고장예측 모니터링 프로그램</h3>
+      <p>개발이전</p><p class="result">생산 설비에 사용</p>
+    </article>
+  </div>
+</section>
+<section id="style" class="reveal">
+  <div class="section-head"><div class="kicker">WORK STYLE</div><h2>작업 스타일과 도구</h2><div class="underline"></div></div>
+  <div class="panel style-row">
+    <div class="swatches" aria-label="디자인 컬러 팔레트">
+      <span class="swatch" style="background:#eaf7ff"></span><span class="swatch" style="background:#153f78"></span><span class="swatch" style="background:#ffd95b"></span><span class="swatch" style="background:#c5e7ff"></span>
+    </div>
+    <div class="style-copy">따뜻한 파스텔톤이면서도 전문적인 스타일을 지향합니다. 차분하고 신뢰감 있는 분위기 안에서 편안하게 소통하고 협업합니다. 구체적인 사용 도구는 전달받지 않아 임의로 기재하지 않았습니다.</div>
+  </div>
+</section>
+<section id="contact" class="reveal">
+  <div class="section-head"><div class="kicker">CONTACT</div><h2>함께 만들어 볼까요?</h2><div class="underline"></div></div>
+  <div class="panel contact">
+    <p>AI 기반 프로그래밍 교육과 딥러닝 프로그래밍, 프로젝트 협업에 관한 이야기를 나눠요.</p>
+    <a class="email" href="mailto:newleepro2k@gmail.com">✉ newleepro2k@gmail.com</a>
+  </div>
+</section>
+<footer>© 이경민 · AI & Deep Learning Portfolio</footer>
+</div>
+</main>
+</div>
+<script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealItems = document.querySelectorAll('.reveal, .experience');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
       });
+    }, {threshold: 0.13, rootMargin: '0px 0px -35px 0px'});
+    revealItems.forEach(item => observer.observe(item));
+  } else {
+    revealItems.forEach(item => item.classList.add('visible'));
+  }
+
+  const timeline = document.getElementById('timeline');
+  const progress = document.getElementById('timelineProgress');
+  let ticking = false;
+  function updateTimeline() {
+    if (!timeline || !progress) return;
+    const rect = timeline.getBoundingClientRect();
+    const viewport = window.innerHeight;
+    const distance = Math.max(0, Math.min(rect.height, viewport * 0.72 - rect.top));
+    progress.style.height = distance + 'px';
+    ticking = false;
+  }
+  function requestTimelineUpdate() {
+    if (!ticking) { requestAnimationFrame(updateTimeline); ticking = true; }
+  }
+  window.addEventListener('scroll', requestTimelineUpdate, {passive:true});
+  window.addEventListener('resize', requestTimelineUpdate);
+  updateTimeline();
+
+  // 데스크톱 포인터 방향에 반응하는 카드 기울기. 터치 기기에서는 비활성화.
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduceMotion) {
+    document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('pointermove', event => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const rotateY = (x - 0.5) * 9;
+        const rotateX = (0.5 - y) * 9;
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+      });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
     });
-  </script>
+  }
+
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', event => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
+    });
+  });
+})();
+</script>
 </body>
 </html>
